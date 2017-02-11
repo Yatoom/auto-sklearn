@@ -128,7 +128,7 @@ class BasePipeline(BaseEstimator):
         else:
             fit_params = {key.replace(":", "__"): value for key, value in
                           fit_params.items()}
-        X, fit_params = self.pipeline_._pre_transform(X, y, **fit_params)
+        X, fit_params = self.pipeline_._fit(X, y, **fit_params)
         return X, fit_params
 
     def fit_estimator(self, X, y, **fit_params):

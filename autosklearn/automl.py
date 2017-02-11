@@ -13,7 +13,7 @@ import numpy.ma as ma
 import scipy.stats
 from sklearn.base import BaseEstimator
 from smac.tae.execute_ta_run import StatusType
-from sklearn.grid_search import _CVScoreTuple
+from sklearn.model_selection._search import _CVScoreTuple
 
 from autosklearn.constants import *
 from autosklearn.data.data_manager_factory import get_data_manager

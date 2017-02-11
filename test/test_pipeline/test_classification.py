@@ -9,7 +9,7 @@ import unittest.mock
 import numpy as np
 import sklearn.datasets
 import sklearn.decomposition
-import sklearn.cross_validation
+import sklearn.model_selection
 import sklearn.ensemble
 import sklearn.svm
 from sklearn.utils.testing import assert_array_almost_equal
@@ -201,7 +201,7 @@ class SimpleClassificationPipelineTest(unittest.TestCase):
         y = X[:, -1].copy()
         X = X[:,:-1]
         X_train, X_test, Y_train, Y_test = \
-            sklearn.cross_validation.train_test_split(X, y)
+            sklearn.model_selection.train_test_split(X, y)
         data = {'X_train': X_train, 'Y_train': Y_train,
                 'X_test': X_test, 'Y_test': Y_test}
 

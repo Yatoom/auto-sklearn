@@ -11,7 +11,7 @@ import sklearn
 
 import numpy as np
 import numpy.ma as npma
-from sklearn.grid_search import _CVScoreTuple
+from sklearn.model_selection._search import _CVScoreTuple
 
 import autosklearn.pipeline.util as putil
 from autosklearn.classification import AutoSklearnClassifier

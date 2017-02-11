@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 import numpy as np
-import sklearn.cross_validation
+import sklearn.model_selection
 
 from autosklearn.util import get_logger
 
@@ -42,9 +42,8 @@ def split_data(X, Y, classification=None):
         sss = None
     else:
         try:
-            sss = sklearn.cross_validation.StratifiedShuffleSplit(
-                Y,
-                n_iter=1,
+            sss = sklearn.model_selection.StratifiedShuffleSplit(
+                n_splits=1,
                 test_size=0.33,
                 train_size=None,
                 random_state=42)
@@ -54,15 +53,15 @@ def split_data(X, Y, classification=None):
                         'regression dataset, use shuffle split.\n')
 
     if sss is None:
-        sss = sklearn.cross_validation.ShuffleSplit(Y.shape[0],
-                                                    n_iter=1,
-                                                    test_size=0.33,
-                                                    train_size=None,
-                                                    random_state=42)
+        sss = sklearn.model_selection.ShuffleSplit(n_splits=1,
+                                                   test_size=0.33,
+                                                   train_size=None,
+                                                   random_state=42)
+    length = sss.get_n_splits(X, Y)
 
-    assert len(sss) == 1, 'Splitting data went wrong'
+    assert length == 1, 'Splitting data went wrong'
 
-    for train_index, valid_index in sss:
+    for train_index, valid_index in sss.split(X, Y):
         if classification is True and num_labels == 1:
             try:
                 Y = Y_old
@@ -94,11 +93,11 @@ def get_CV_fold(X, Y, fold, folds, shuffle=True, random_state=None):
                          'be equal.')
 
     if len(Y.shape) > 1:
-        kf = sklearn.cross_validation.KFold(n=Y.shape[0], n_folds=folds,
+        kf = sklearn.model_selection.KFold(n=Y.shape[0], n_folds=folds,
                                             shuffle=shuffle,
                                             random_state=random_state)
     else:
-        kf = sklearn.cross_validation.StratifiedKFold(Y,
+        kf = sklearn.model_selection.StratifiedKFold(Y,
                                                       n_folds=folds,
                                                       shuffle=shuffle,
                                                       random_state=random_state)

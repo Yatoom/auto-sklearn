@@ -21,7 +21,7 @@ requirements = [
     "Cython",
     "numpy>=1.9.0",
     "scipy>=0.14.1",
-    "scikit-learn==0.17.1",
+    "scikit-learn>=0.18.1",
     "lockfile",
     "joblib",
     "psutil",
@@ -29,11 +29,11 @@ requirements = [
     "ConfigArgParse",
     "liac-arff",
     "pandas",
-    "xgboost==0.4a30",
+    "xgboost>=0.4a30",
     "ConfigSpace",
     "pynisher>=0.4",
     "pyrfr",
-    "smac==0.2.2"
+    "smac>=0.2.2"
 ]
 
 with open("autosklearn/__version__.py") as fh:
