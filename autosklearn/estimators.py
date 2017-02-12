@@ -77,6 +77,15 @@ class AutoMLDecorator(object):
         """
         return self._automl.show_models()
 
+    def get_models(self):
+        """Return the final ensemble found by auto-sklearn
+
+        Returns
+        -------
+        str
+        """
+        return self._automl.get_models()
+
     @property
     def grid_scores_(self):
         return self._automl.grid_scores_

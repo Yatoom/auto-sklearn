@@ -212,5 +212,18 @@ class EnsembleSelection(AbstractEnsemble):
 
         return sio.getvalue()
 
+    def show_ensemble(self, models):
+        output = []
+        sio = six.StringIO()
+        for i, weight in enumerate(self.weights_):
+            identifier = self.identifiers_[i]
+            model = models[identifier]
+            if weight > 0.0:
+                output.append((weight, model))
+
+        output.sort(reverse=True, key=lambda t: t[0])
+
+        return output
+
     def get_model_identifiers(self):
         return self.identifiers_

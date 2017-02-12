@@ -695,13 +695,19 @@ class AutoML(BaseEstimator):
                   'limit: %d\n' % num_memout)
         return sio.getvalue()
 
-
     def show_models(self):
         if self.models_ is None or len(self.models_) == 0 or \
                 self.ensemble_ is None:
             self._load_models()
 
         return self.ensemble_.pprint_ensemble_string(self.models_)
+
+    def get_models(self):
+        if self.models_ is None or len(self.models_) == 0 or \
+                self.ensemble_ is None:
+            self._load_models()
+
+        return self.ensemble_.show_ensemble(self.models_)
 
     def _save_ensemble_data(self, X, y):
         """Split dataset and store Data for the ensemble script.
